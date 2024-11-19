@@ -143,21 +143,39 @@ def step_game(action, render=False):
     done = False
 
     # Collision with paddles
-    if ball.colliderect(paddle1):
-        ball_velocity[0] = abs(ball_velocity[0])  # Ensure ball moves right
-        # Slightly adjust the vertical velocity based on paddle position
-        delta = (ball.centery - paddle1.centery) / (PADDLE_HEIGHT / 2)
-        ball_velocity[1] += delta
-        # Intermediate Punishment for hitting the ball
-        reward -= 0.5
-        print(f"[DEBUG] Opponent Hits the Ball. Reward: {reward:.2f}")
-    elif ball.colliderect(paddle2):
-        ball_velocity[0] = -abs(ball_velocity[0])  # Ensure ball moves left
-        delta = (ball.centery - paddle2.centery) / (PADDLE_HEIGHT / 2)
-        ball_velocity[1] += delta
-        # Intermediate Reward for hitting the ball
-        reward += 0.5
-        print(f"[DEBUG] Agent Hit the Ball. Reward: {reward:.2f}")
+    collision_cooldown = 5  # Number of frames to ignore collisions after a hit
+    cooldown_timer = 0
+
+    if cooldown_timer == 0:  # Only check for collisions if cooldown is 0
+        if ball.colliderect(paddle1):
+            ball_velocity[0] = abs(ball_velocity[0])  # Ensure ball moves right
+
+            # Move the ball away from the paddle to prevent sticking
+            ball.x = paddle1.right + 1
+
+            # Intermediate Punishment for opponent hitting the ball
+            reward -= 0.1
+            print(f"[DEBUG] Opponent Hits the Ball. Reward: {reward:.2f}")
+
+            # Start cooldown to prevent multiple hits
+            cooldown_timer = collision_cooldown
+
+        elif ball.colliderect(paddle2):
+            ball_velocity[0] = -abs(ball_velocity[0])  # Ensure ball moves left
+
+            # Move the ball away from the paddle to prevent sticking
+            ball.x = paddle2.left - ball.width - 1
+
+            # Intermediate Reward for hitting the ball
+            reward += 0.1
+            print(f"[DEBUG] Agent Hit the Ball. Reward: {reward:.2f}")
+
+            # Start cooldown to prevent multiple hits
+            cooldown_timer = collision_cooldown
+
+    # Reduce cooldown timer
+    if cooldown_timer > 0:
+        cooldown_timer -= 1
 
     # Limit the vertical speed to prevent it from becoming too fast
     max_ball_speed = 15
