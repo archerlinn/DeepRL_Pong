@@ -36,7 +36,7 @@ paddle2 = pygame.Rect(WIDTH - 50 - PADDLE_WIDTH, HEIGHT // 2 - PADDLE_HEIGHT // 
 ball = pygame.Rect(WIDTH // 2 - BALL_SIZE // 2, HEIGHT // 2 - BALL_SIZE // 2, BALL_SIZE, BALL_SIZE)
 
 # Ball velocity
-ball_velocity = [10, 10]
+ball_velocity = [14, 14]
 
 # Define actions
 ACTION_UP = 0
@@ -64,7 +64,7 @@ def reset_ball():
     global ball_velocity
     ball.center = (WIDTH // 2, HEIGHT // 2)
     angle = random.uniform(0, 2 * math.pi)
-    initial_speed = 9
+    initial_speed = 14
     ball_velocity = [initial_speed * math.cos(angle), initial_speed * math.sin(angle)]
     # Ensure the ball isn't moving too vertically or horizontally
     while abs(ball_velocity[0]) < 3 or abs(ball_velocity[1]) < 3:
