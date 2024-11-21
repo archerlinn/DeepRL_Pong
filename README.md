@@ -45,9 +45,8 @@ Score (human vs AI agent) - "8 : 10" I lost...
 The agent demonstrated strong gameplay, consistently predicting ball movements and outplaying me in several key moments.
 
 
-
-## The Model and Network Architecture
-The reinforcement learning agent uses a simple policy network, defined as follows:
+## The Model and Network Architecture (setups)
+So here's how it all set up - The reinforcement learning agent uses a simple policy network, defined as follows:
 
 ### Policy Network Architecture
 - **Input Layer:** 6 neurons, representing the game state: paddle1 position, paddle2 position, ball x and y positions, and ball x and y velocities.
@@ -69,10 +68,16 @@ Although the agent is performing well, there are still several areas that could 
 3. **Exploration Strategies:** The current model selects actions based on the output probabilities from the policy network. Implementing an epsilon-greedy strategy or using entropy regularization could encourage more exploration, helping the agent discover better strategies.
 4. **Environment Augmentation:** Currently, the environment is quite static. Adding random elements, such as varying ball speed, could make the agent more robust and better at generalizing its strategies.
 
+This is my first deep reinforcement learning project. With only 3 nights of training (12,000+ games), I'm very happy with the result. In the future, I will try to implement deep reinforcement learning into robotics and complex decision-making environments. 
+
 Feel free to explore the project further and contribute if you have ideas for improvement!
 
 ## How to Run the Project
 To run the project, ensure that you have Python, Pygame, PyTorch, and other necessary libraries installed. Simply execute the main script, and watch as the RL agent learns to play Pong!
+
+```bash
+pip install pygame numpy torch tensorboard
+```
 
 ```bash
 python main.py
