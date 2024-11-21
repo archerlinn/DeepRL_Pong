@@ -23,7 +23,7 @@ Day three was all about refining the agent's ability to win. I found that the re
 
 After many episodes of trial and error, the agent began to improve. It moved more purposefully and started making strategic decisions to maximize its chances of winning. It started to be competitive against the hardcoded computer! 
 
-[photo of reward system] [video of day3 game]
+![Day3_DPRL_Scored_GIF](https://github.com/user-attachments/assets/92506a2b-66bf-4151-b79f-917d0dde83d6)
 
 ### Day 4: Testing the AI's Ability
 On day four, I woke up seeing "1492 : 1678" - the agent was winning against the computer. Now, it's time to test. AI's ability was put to the test in a real game against humans (me)...
