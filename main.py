@@ -36,7 +36,7 @@ paddle2 = pygame.Rect(WIDTH - 50 - PADDLE_WIDTH, HEIGHT // 2 - PADDLE_HEIGHT // 
 ball = pygame.Rect(WIDTH // 2 - BALL_SIZE // 2, HEIGHT // 2 - BALL_SIZE // 2, BALL_SIZE, BALL_SIZE)
 
 # Ball velocity
-ball_velocity = [14, 14]
+ball_velocity = [13, 13]
 
 # Define actions
 ACTION_UP = 0
@@ -51,6 +51,8 @@ FPS = 60  # Frames per second
 # Scores
 score1 = 0  # Left Paddle (AI)
 score2 = 0  # Right Paddle (RL Agent)
+total_score1 = 0
+total_score2 = 0
 
 # Font for displaying score
 font = pygame.font.Font(None, 74)
@@ -60,16 +62,24 @@ font = pygame.font.Font(None, 74)
 # ==============================
 
 def reset_ball():
-    """Reset the ball to the center with a random direction."""
+    """Reset the ball to the center with a controlled random direction."""
     global ball_velocity
     ball.center = (WIDTH // 2, HEIGHT // 2)
-    angle = random.uniform(0, 2 * math.pi)
-    initial_speed = 14
+    initial_speed = 13
+    # Restrict angles to avoid extremes (near-horizontal or near-vertical)
+    min_angle = math.radians(15)  # Minimum angle from horizontal/vertical
+    valid_ranges = [
+        (min_angle, math.pi / 2 - min_angle),  # Top-right
+        (math.pi / 2 + min_angle, math.pi - min_angle),  # Top-left
+        (math.pi + min_angle, 3 * math.pi / 2 - min_angle),  # Bottom-left
+        (3 * math.pi / 2 + min_angle, 2 * math.pi - min_angle)  # Bottom-right
+    ]
+    # Randomly select an angle within valid ranges
+    angle_range = random.choice(valid_ranges)
+    angle = random.uniform(*angle_range)
+    # Compute velocity components
     ball_velocity = [initial_speed * math.cos(angle), initial_speed * math.sin(angle)]
-    # Ensure the ball isn't moving too vertically or horizontally
-    while abs(ball_velocity[0]) < 3 or abs(ball_velocity[1]) < 3:
-        angle = random.uniform(0, 2 * math.pi)
-        ball_velocity = [initial_speed * math.cos(angle), initial_speed * math.sin(angle)]
+
 
 def reset_game():
     """Reset the game to the initial state."""
@@ -108,7 +118,7 @@ def step_game(action, render=False):
     Returns:
         tuple: (next_state, reward, done)
     """
-    global paddle1, paddle2, ball, ball_velocity, score1, score2
+    global paddle1, paddle2, ball, ball_velocity, score1, score2, total_score1, total_score2
 
     # Define paddle movement speed
     paddle_speed = 7
@@ -123,12 +133,26 @@ def step_game(action, render=False):
     # Ensure paddle2 stays on screen
     paddle2.y = max(0, min(HEIGHT - PADDLE_HEIGHT, paddle2.y))
 
+    """
     # Hardcoded AI for paddle1 (Left Paddle): Move paddle towards the ball
     opponent_speed = 7
     if paddle1.centery < ball.centery and paddle1.bottom < HEIGHT:
         paddle1.y += opponent_speed
     elif paddle1.centery > ball.centery and paddle1.top > 0:
         paddle1.y -= opponent_speed
+    """
+
+    # Human-controlled paddle1
+    keys = pygame.key.get_pressed()
+    paddle_speed = 7
+    if keys[pygame.K_w]:  # Move paddle1 up
+        paddle1.y -= paddle_speed
+    if keys[pygame.K_s]:  # Move paddle1 down
+        paddle1.y += paddle_speed
+
+    # Ensure paddle1 stays on screen
+    paddle1.y = max(0, min(HEIGHT - PADDLE_HEIGHT, paddle1.y))
+
 
     # Update ball position
     ball.x += ball_velocity[0]
@@ -183,12 +207,14 @@ def step_game(action, render=False):
 
     # Check for scoring
     if ball.left <= 0:
-        score1 += 1
+        score2 += 1
+        total_score2 += 1
         reward += 1  # Positive reward for RL agent by scoring a point
         done = True
         print(f"[DEBUG] Agent Scored a Point. Reward: {reward:.2f}")
     elif ball.right >= WIDTH:
-        score2 += 1
+        score1 += 1
+        total_score1 += 1
         reward -= 1   # Negative reward for RL agent by conceding a point
         done = True
         print(f"[DEBUG] Agent Conceded a Point. Reward: {reward:.2f}")
@@ -209,10 +235,10 @@ def render_game():
     pygame.draw.aaline(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT))
 
     # Display scores
-    score_text1 = font.render(str(score1), True, WHITE)
-    score_text2 = font.render(str(score2), True, WHITE)
-    screen.blit(score_text1, (WIDTH // 2 - 50, 10))
-    screen.blit(score_text2, (WIDTH // 2 + 20, 10))
+    score_text1 = font.render(str(total_score1), True, WHITE)
+    score_text2 = font.render(str(total_score2), True, WHITE)
+    screen.blit(score_text1, (WIDTH // 2 - 250, 10))
+    screen.blit(score_text2, (WIDTH // 2 + 150, 10))
 
     pygame.display.flip()
     clock.tick(FPS)
@@ -327,7 +353,7 @@ def main():
         print("No pre-trained model found. Starting training from scratch.")
 
     num_episodes = 10000000
-    max_steps = 10000  # Maximum steps per episode changed from 1000 to 10000
+    max_steps = 2000  # Maximum steps per episode changed from 1000 to 10000
 
     # Initial game reset
     state = reset_game()
@@ -365,6 +391,7 @@ def main():
             agent.update_policy(episode)
             print("----------------!policy updated!----------------")
         print(f"Episode {episode}\tTotal Reward: {total_reward:.2f}\tScore: {score1}-{score2}")
+        print(f"Total Score: {total_score1}-{total_score2}")
         
         # Save the policy network every 100 episodes
         if episode % 100 == 0:
