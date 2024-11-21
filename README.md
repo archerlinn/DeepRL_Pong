@@ -26,11 +26,16 @@ After many episodes of trial and error, the agent began to improve. It moved mor
 ![Day3_DPRL_Scored_GIF](https://github.com/user-attachments/assets/92506a2b-66bf-4151-b79f-917d0dde83d6)
 
 ### Day 4: Testing the AI's Ability
-On day four, I woke up seeing "1492 : 1678" - the agent was winning against the computer. Now, it's time to test. AI's ability was put to the test in a real game against humans (me)...
+On day four, I woke up seeing "1492 : 1678" - the agent was winning against the computer. 
+
+![Screenshot 2024-11-21 103632](https://github.com/user-attachments/assets/f14706f5-62ee-4cbb-aca2-ce6e7099b4f0)
+
+Now, it's time to test. AI's ability was put to the test in a real game against humans (me)...
 A ten-point match was played against the agent, and the result was an..., 8:10 loss. The agent demonstrated strong gameplay, consistently predicting ball movements and outplaying me in several key moments.
 
-Let's watch the video - 
-[video of the final game]
+Let's watch the video...
+
+
 
 ## The Model and Network Architecture
 The reinforcement learning agent uses a simple policy network, defined as follows:
