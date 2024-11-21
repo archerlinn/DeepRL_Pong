@@ -16,7 +16,7 @@ It works! Although it seems very clueless, I was excited to see what happens tom
 ### Day 2: The Awakening (The Ball Matters!)
 Surprisingly when I woke up, it went through 7,500 games, and the agent learned how to HIT the ball! It became clear that the most crucial piece of information for the agent was the ball. The agent needed to focus on the ball's movement, predict where it would go, and react accordingly. With only two layers, the network began learning from the game state: paddle positions, ball coordinates, and velocities. I was very happy to see that the agent finally started moving the paddle, though it wasn't winning any games yet.
 
-[photo of 7500 games] [video of day2 game]
+![Day2_PDRL_HitBall_GIF](https://github.com/user-attachments/assets/78e069d8-06e1-4878-9129-cd5bb03f3d72)
 
 ### Day 3: Learning to Win (Victory Awaits)
 Day three was all about refining the agent's ability to win. I found that the reward system wasn't too balanced, so I lowered the reward of hitting the ball from 0.5 to 0.1 and kept the 1.0 reward for scoring a point. The agent now understood the concept of reward: hitting the ball is good, but gaining a big reward for scoring points is the ultimate goal. While still, I kept some negative rewards for missing the ball and conceding a point.
