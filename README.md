@@ -25,16 +25,20 @@ After many episodes of trial and error, the agent began to improve. It moved mor
 
 ![Day3_DPRL_Scored_GIF](https://github.com/user-attachments/assets/92506a2b-66bf-4151-b79f-917d0dde83d6)
 
-### Day 4: Score (computer vs agent) - "1492 : 1678"
+### Day 4: Score (computer vs AI agent) - "1492 : 1678"
 On day four, I woke up seeing "1492 : 1678" - the agent was winning against the computer. 
 
 ![Screenshot 2024-11-21 103632 (1)](https://github.com/user-attachments/assets/90fbd518-aea0-4a97-92a3-e9bbf1d0989d)
 
 ### Final Game: Human vs AI
 Now, it's time to test. AI's ability was put to the test in a real game against humans (me)...
-A ten-point match was played against the agent, and the result was an..., 8:10 loss. The agent demonstrated strong gameplay, consistently predicting ball movements and outplaying me in several key moments.
+A ten-point match was played against the agent, and the result was an... let's watch the replay.
 
 Let's watch the video...
+
+
+Score (human vs AI agent) - "8 : 10" I lost... 
+The agent demonstrated strong gameplay, consistently predicting ball movements and outplaying me in several key moments.
 
 
 
