@@ -28,7 +28,7 @@ After many episodes of trial and error, the agent began to improve. It moved mor
 ### Day 4: Testing the AI's Ability
 On day four, I woke up seeing "1492 : 1678" - the agent was winning against the computer. 
 
-![Screenshot 2024-11-21 103632](https://github.com/user-attachments/assets/f14706f5-62ee-4cbb-aca2-ce6e7099b4f0)
+![Screenshot 2024-11-21 103632 (1)](https://github.com/user-attachments/assets/90fbd518-aea0-4a97-92a3-e9bbf1d0989d)
 
 Now, it's time to test. AI's ability was put to the test in a real game against humans (me)...
 A ten-point match was played against the agent, and the result was an..., 8:10 loss. The agent demonstrated strong gameplay, consistently predicting ball movements and outplaying me in several key moments.
