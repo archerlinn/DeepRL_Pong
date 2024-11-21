@@ -11,8 +11,7 @@ On day one, the focus was on setting up the environment and getting a taste of b
 
 It works! Although it seems very clueless, I was excited to see what happens tomorrow after a night of training.
 
-<img src="![Day1_PDRL](https://github.com/user-attachments/assets/059e1bcc-8242-4b7c-86d1-77637b5e1a11)" alt="Description" width="300" height="200">
-![Day1_DPRL_Clueless_GIF](https://github.com/user-attachments/assets/bb988df9-1636-4375-9bf3-c80d07012ec6)
+![Day1_PDRL](https://github.com/user-attachments/assets/059e1bcc-8242-4b7c-86d1-77637b5e1a11) ![Day1_DPRL_Clueless_GIF](https://github.com/user-attachments/assets/bb988df9-1636-4375-9bf3-c80d07012ec6)
 
 ### Day 2: The Awakening (The Ball Matters!)
 Surprisingly when I woke up, it went through 7,500 games, and the agent learned how to HIT the ball! It became clear that the most crucial piece of information for the agent was the ball. The agent needed to focus on the ball's movement, predict where it would go, and react accordingly. With only two layers, the network began learning from the game state: paddle positions, ball coordinates, and velocities. I was very happy to see that the agent finally started moving the paddle, though it wasn't winning any games yet.
