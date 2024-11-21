@@ -11,7 +11,7 @@ On day one, the focus was on setting up the environment and getting a taste of b
 
 It works! Although it seems very clueless, I was excited to see what happens tomorrow after a night of training.
 
-<img src=![Day1_PDRL](https://github.com/user-attachments/assets/059e1bcc-8242-4b7c-86d1-77637b5e1a11) alt="Description" width="300" height="200">
+<img src="![Day1_PDRL](https://github.com/user-attachments/assets/059e1bcc-8242-4b7c-86d1-77637b5e1a11)" alt="Description" width="300" height="200">
 ![Day1_DPRL_Clueless_GIF](https://github.com/user-attachments/assets/bb988df9-1636-4375-9bf3-c80d07012ec6)
 
 ### Day 2: The Awakening (The Ball Matters!)
